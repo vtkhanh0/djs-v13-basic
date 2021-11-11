@@ -10,6 +10,7 @@ client.on('interactionCreate', async (interaction) => {
     const args = [];
 
     for (let option of interaction.options.data) {
+        console.log(option)
         if (option.type === "SUB_COMMAND") {
             if (option.name) args.push(option.name);
             option.options?.forEach((x) => {

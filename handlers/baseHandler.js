@@ -1,8 +1,12 @@
 const { readdirSync } = require('fs');
+
 const client = require('../index');
 
+// Event handler
 readdirSync('./events/').forEach(file => require('../events/' + file));
 
+
+// Command handler
 readdirSync('./commands/').forEach(dir => {
     const commands = readdirSync(`./commands/${dir}/`);
 
@@ -18,6 +22,8 @@ readdirSync('./commands/').forEach(dir => {
 });
 
 let cmd = [];
+
+// Slash command handler
 readdirSync('./slashCommands/').forEach(dir => {
     const slash = readdirSync(`./slashCommands/${dir}/`);
 
@@ -33,4 +39,12 @@ readdirSync('./slashCommands/').forEach(dir => {
     });
 });
 
-client.on('ready', async() => setTimeout(async() => await client.application.commands.set(cmd), 3000));
+client.on('ready', async() => {
+    // load slash command 1 guild
+    // client.guilds.cache.get("878632909936922676").commands.set(cmd);
+
+    // load slash command nhieu guild
+    setTimeout(async () => {
+        await client.application.commands.set(cmd);
+    }, 1000);
+});
