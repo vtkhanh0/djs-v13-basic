@@ -19,7 +19,7 @@ module.exports = {
      * @param {CommandInteraction} interaction 
      */
     async execute(client, interaction) {
-        let member = interaction.options.getMember("user") || interaction;
+        let member = interaction.options.getMember("user") || interaction.member;
         
         await interaction.reply({embeds: [{
             author: {
